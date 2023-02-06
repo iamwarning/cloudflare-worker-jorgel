@@ -1,6 +1,5 @@
 name = ""
 main = "src/index.js"
-account_id = ""
 compatibility_date = ""
 workers_dev = false
 [vars]
