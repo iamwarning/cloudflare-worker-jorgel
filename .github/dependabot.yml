@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+    commit-message:
+      prefix: ⬆
+  # Enable version updates for NPM dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "07:00"
+      timezone: "America/Mexico_City"
+    commit-message:
+      prefix: ⬆
+    labels:
+      - "dependencies"

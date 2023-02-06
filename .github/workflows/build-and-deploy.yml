@@ -1,0 +1,45 @@
+name: Build & Deploy to Cloudflare Workers
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://jorgel.io/
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Project Dependencies
+        run: npm ci
+      - name: Verify Source
+        run: ls -la
+      - name: Publish to Cloudflare Workers with Wrangler by @${{ github.actor }}
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
