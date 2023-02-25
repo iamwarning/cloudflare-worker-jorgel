@@ -8,6 +8,8 @@ updates:
       day: "sunday"
     commit-message:
       prefix: ⬆
+    assignees:
+      - "pawahtun"
   # Enable version updates for NPM dependencies
   - package-ecosystem: "npm"
     directory: "/"
@@ -17,5 +19,7 @@ updates:
       timezone: "America/Mexico_City"
     commit-message:
       prefix: ⬆
+    assignees:
+      - "pawahtun"
     labels:
       - "dependencies"
