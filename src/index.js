@@ -28,19 +28,20 @@ const options = {
     metadata: headers.map(value => ({ field: value })),
 }
 
-const sleep = ms => {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms)
-    })
-}
+const sleep = (() => {
+    const cache = {};
+    return async ms => {
+        if (!cache[ms]) {
+            cache[ms] = new Promise(resolve => setTimeout(resolve, ms));
+        }
+        return cache[ms];
+    };
+})();
+
 
 const makeId = length => {
-    let text = ""
-    const possible = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789"
-    for (let i = 0; i < length; i += 1) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
-    return text
+    const possible = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
+    return Array.from({length}, () => possible.charAt(Math.floor(Math.random() * possible.length))).join("");
 }
 
 const buildLogMessage = (request, response) => {
