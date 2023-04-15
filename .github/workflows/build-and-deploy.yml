@@ -39,7 +39,6 @@ jobs:
       - name: Verify Source & Update LOG_TAIL values
         run: |
           ls -la
-#          chmod +x ./scripts/update-wrangler.sh
           ./scripts/update-wrangler.sh
         env:
           API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
@@ -52,7 +51,6 @@ jobs:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
       - name: Logs sent after deployment! 🎉
         run: |
-#          chmod +x ./scripts/log-tail-log.sh
           ./scripts/log-tail-log.sh
         env:
           API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
