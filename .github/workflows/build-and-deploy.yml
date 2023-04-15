@@ -7,6 +7,10 @@ on:
     types:
       - published
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pages: write
@@ -32,10 +36,25 @@ jobs:
           cache: 'npm'
       - name: Install Project Dependencies
         run: npm ci
-      - name: Verify Source
-        run: ls -la
+      - name: Verify Source & Update LOG_TAIL values
+        run: |
+          ls -la
+          chmod +x ./scripts/update-wrangler.sh
+          ./scripts/update-wrangler.sh
+        env:
+          API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
+          URL_TAIL: ${{ secrets.URL_TAIL }}
+        shell: bash
       - name: Publish to Cloudflare Workers with Wrangler by @${{ github.actor }}
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+      - name: Logs sent after deployment! 🎉
+        run: |
+          chmod +x ./scripts/log-tail-log.sh
+          ./scripts/log-tail-log.sh
+        env:
+          API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
+          URL_TAIL: ${{ secrets.URL_TAIL }}
+          MESSAGE: ${{ github.workflow }}-${{ github.ref }} by @${{ github.actor }}
