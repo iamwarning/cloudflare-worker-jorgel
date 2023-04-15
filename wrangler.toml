@@ -2,7 +2,7 @@ name = "jorgel-e900"
 main = "src/index.js"
 compatibility_date = "2023-02-06"
 workers_dev = false
-#[vars]
-#API_KEY_LOG_TAIL = ""
-#LOG_TAIL_URL = ""
+[vars]
+API_KEY_LOG_TAIL = "---"
+LOG_TAIL_URL = "---"
 
