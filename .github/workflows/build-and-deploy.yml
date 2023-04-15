@@ -39,11 +39,11 @@ jobs:
       - name: Verify Source & Update LOG_TAIL values
         run: |
           ls -la
-          ./scripts/update-wrangler.sh
+          sh ./update-wrangler.sh
+        working-directory: scripts
         env:
           API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
           URL_TAIL: ${{ secrets.URL_TAIL }}
-        shell: bash
       - name: Publish to Cloudflare Workers with Wrangler by @${{ github.actor }}
         uses: cloudflare/wrangler-action@2.0.0
         with:
@@ -51,9 +51,9 @@ jobs:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
       - name: Logs sent after deployment! 🎉
         run: |
-          ./scripts/log-tail-log.sh
+          sh ./log-tail-log.sh
+        working-directory: scripts
         env:
           API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
           URL_TAIL: ${{ secrets.URL_TAIL }}
           MESSAGE: ${{ github.workflow }}-${{ github.ref }} by @${{ github.actor }}
-        shell: bash
