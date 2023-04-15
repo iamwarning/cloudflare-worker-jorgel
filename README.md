@@ -5,3 +5,5 @@ Cloudflare Worker that logs requests and responses to Logtail
 [![CodeQL Analysis](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/codeql.yml/badge.svg)](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/dependency-review.yml/badge.svg?branch=main)](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/dependency-review.yml)
 [![Lock Issues & PR's](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/lock.yml/badge.svg?branch=main)](https://github.com/iamwarning/cloudflare-worker-jorgel/actions/workflows/lock.yml)
+
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/iamwarning/cloudflare-worker-jorgel)
