@@ -2,7 +2,7 @@
   "name": "jorgel-worker",
   "version": "0.0.0",
   "devDependencies": {
-    "wrangler": "3.5.1"
+    "wrangler": "3.6.0"
   },
   "private": true,
   "scripts": {
