@@ -44,7 +44,7 @@ jobs:
           API_KEY_TAIL: ${{ secrets.API_KEY_TAIL }}
           URL_TAIL: ${{ secrets.URL_TAIL }}
       - name: Publish to Cloudflare Workers with Wrangler by @${{ github.actor }}
-        uses: cloudflare/wrangler-action@v3.1.0
+        uses: cloudflare/wrangler-action@v3.1.1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
