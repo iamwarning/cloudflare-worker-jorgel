@@ -16,7 +16,7 @@ jobs:
     name: Lock Issues & PR's
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/lock-threads@v4
+      - uses: dessant/lock-threads@v5
         with:
           github-token: ${{ secrets.GH_ACCESS_TOKEN }}
           issue-inactive-days: '2'
